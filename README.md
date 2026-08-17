@@ -1,2 +1,3 @@
 # GamblOS
-WebOS
+My first WebOS
+Called GamblOS because of slot machine.
