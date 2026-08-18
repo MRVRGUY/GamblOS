@@ -11,15 +11,23 @@
     font-family: sans-serif;
   }
 
+  body {
+    overflow: hidden;
+  }
+
+  /* =========================
+     DESKTOP
+     ========================= */
+
   #desktop {
     position: relative;
     width: 100%;
     height: calc(100% - 40px);
-    background-image: url("Untitled design.png");
+    background-image: url("Background.png");
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    color: #fff;
+    color: #adffb8;
   }
 
   #welcome {
@@ -31,14 +39,21 @@
     margin: 0 0 16px;
   }
 
-  /* CLOCKS */
+
+  /* =========================
+     DESKTOP CLOCK
+     ========================= */
+
   #desktop-clock {
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     top: 100px;
-    right: 850px;
     text-align: center;
-    color: white;
+    color: #adffb8;
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+
+    white-space: nowrap;
   }
 
   #desktop-clock-time {
@@ -51,26 +66,10 @@
     margin-top: 2px;
   }
 
-  #taskbar-clock {
-    margin-left: auto;
-    min-width: 80px;
-    text-align: center;
-    color: white;
-    font-size: 14px;
-    line-height: 1.2;
-    padding: 0 8px;
-  }
 
-  #taskbar-time {
-    font-weight: bold;
-  }
-
-  #taskbar-date {
-    font-size: 11px;
-    opacity: 0.8;
-  }
-
-  /* WINDOWS */
+  /* =========================
+     WINDOWS
+     ========================= */
 
   .window {
     position: absolute;
@@ -81,13 +80,12 @@
     background: #131814;
     color: #ffffff;
     border: 1px solid #706f6f;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     display: flex;
     flex-direction: column;
     left: 100px;
     top: 50px;
-
     resize: both;
     overflow: hidden;
   }
@@ -132,67 +130,136 @@
     color: #00ff66;
   }
 
-  /* TASKBAR */
+
+  /* =========================
+     TASKBAR
+     ========================= */
 
   #taskbar {
+    position: relative;
+
     height: 40px;
+
     background: #1c1c1c;
+
     display: flex;
     align-items: center;
+
     padding: 0 8px;
+
     box-sizing: border-box;
+  }
+
+
+  /* App icons stay centered */
+  #taskbar-apps {
+    position: absolute;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+
     gap: 6px;
   }
 
+
+  /* =========================
+     TASKBAR BUTTONS
+     ========================= */
+
   .taskbar-button {
+    width: 40px;
     height: 32px;
-    min-width: 40px;
-    padding: 0 12px;
+
+    padding: 0;
+
     border: 1px solid #555;
     border-radius: 4px;
+
     background: #2b2b2b;
     color: white;
+
     cursor: pointer;
-    font-size: 14px;
+
+    font-size: 20px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
   }
 
   .taskbar-button:hover {
     background: #3a3a3a;
   }
 
-  .taskbar-icon {
-    font-size: 18px;
+
+  /* =========================
+     TASKBAR CLOCK
+     ========================= */
+
+  #taskbar-clock {
+    margin-left: auto;
+
+    min-width: 80px;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: 14px;
+    line-height: 1.2;
+
+    padding: 0 8px;
   }
 
-  /* SLOTS */
+  #taskbar-time {
+    font-weight: bold;
+  }
+
+  #taskbar-date {
+    font-size: 11px;
+    opacity: 0.8;
+  }
+
+
+  /* =========================
+     SLOTS
+     ========================= */
 
   .slots-body {
     flex: 1;
+
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
+
     gap: 10px;
+
     padding: 12px;
+
     box-sizing: border-box;
   }
 
   .reels {
     display: flex;
+
     gap: 6px;
+
     font-size: 32px;
   }
 
   .reel {
     width: 50px;
     height: 50px;
+
     background: #ffffff;
+
     border: 1px solid #ccc;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -207,50 +274,93 @@
     padding: 6px 14px;
     cursor: pointer;
   }
+
 </style>
 </head>
 
+
 <body>
+
+<!-- =========================
+     DESKTOP
+     ========================= -->
 
 <div id="desktop">
 
   <div id="welcome">
-    <h1>Welcome to gamblOS</h1>
+    <h1>GamblOS</h1>
   </div>
 
+
+  <!-- Desktop clock -->
+
   <div id="desktop-clock">
+
     <div id="desktop-clock-time"></div>
+
     <div id="desktop-clock-date"></div>
+
   </div>
 
 </div>
 
+
+
+<!-- =========================
+     TASKBAR
+     ========================= -->
 
 <div id="taskbar">
 
-  <button class="taskbar-button" onclick="openNote()">
-    <span class="taskbar-icon">📝</span>
-    Note
-  </button>
 
-  <button class="taskbar-button" onclick="openSlots()">
-    <span class="taskbar-icon">🎰</span>
-    Slots
-  </button>
+  <!-- Centered app icons -->
+
+  <div id="taskbar-apps">
+
+    <button
+      class="taskbar-button"
+      onclick="openNote()"
+      title="Note"
+    >
+      📝
+    </button>
+
+
+    <button
+      class="taskbar-button"
+      onclick="openSlots()"
+      title="Slots"
+    >
+      🎰
+    </button>
+
+  </div>
+
+
+  <!-- Right-side clock -->
 
   <div id="taskbar-clock">
+
     <div id="taskbar-time"></div>
+
     <div id="taskbar-date"></div>
+
   </div>
 
 </div>
+
 
 
 <script>
 
+  /* =========================
+     CLOCKS
+     ========================= */
 
   function updateClocks() {
+
     const now = new Date();
+
 
     const timeOptions = {
       hour: '2-digit',
@@ -258,60 +368,115 @@
       second: '2-digit'
     };
 
+
     const dateOptions = {
       weekday: 'short',
       month: 'short',
       day: 'numeric'
     };
 
-    const time = now.toLocaleTimeString([], timeOptions);
-    const date = now.toLocaleDateString([], dateOptions);
 
-    document.getElementById('desktop-clock-time').textContent = time;
-    document.getElementById('desktop-clock-date').textContent = date;
+    const time =
+      now.toLocaleTimeString([], timeOptions);
 
-    document.getElementById('taskbar-time').textContent =
+
+    const date =
+      now.toLocaleDateString([], dateOptions);
+
+
+    document.getElementById(
+      'desktop-clock-time'
+    ).textContent = time;
+
+
+    document.getElementById(
+      'desktop-clock-date'
+    ).textContent = date;
+
+
+    document.getElementById(
+      'taskbar-time'
+    ).textContent =
       now.toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit'
       });
 
-    document.getElementById('taskbar-date').textContent = date;
+
+    document.getElementById(
+      'taskbar-date'
+    ).textContent = date;
+
   }
 
+
   updateClocks();
+
   setInterval(updateClocks, 1000);
 
+
+
+  /* =========================
+     WINDOW SYSTEM
+     ========================= */
+
   let count = 0;
+
   let zTop = 1;
 
+
+
+  /* =========================
+     NOTE APP
+     ========================= */
 
   function openNote() {
 
     count++;
 
-    const win = document.createElement('div');
+
+    const win =
+      document.createElement('div');
+
 
     win.className = 'window';
+
 
     win.style.left =
       (100 + count * 20) + 'px';
 
+
     win.style.top =
       (100 + count * 20) + 'px';
 
-    win.style.zIndex = ++zTop;
+
+    win.style.zIndex =
+      ++zTop;
 
 
     win.innerHTML = `
+
       <div class="titlebar">
+
         <span>Note</span>
-        <button onclick="this.closest('.window').remove()">x</button>
+
+        <button
+          onclick="this.closest('.window').remove()"
+        >
+          x
+        </button>
+
       </div>
 
+
       <div class="win-body">
-        <textarea placeholder="type here..."></textarea>
+
+        <textarea
+          placeholder="type here..."
+        ></textarea>
+
       </div>
+
     `;
 
 
@@ -321,51 +486,21 @@
 
 
     win.addEventListener('mousedown', () => {
+
       win.style.zIndex = ++zTop;
-    });
-
-
-    const bar =
-      win.querySelector('.titlebar');
-
-
-    let offsetX;
-    let offsetY;
-    let dragging = false;
-
-
-    bar.addEventListener('mousedown', e => {
-
-      dragging = true;
-
-      offsetX =
-        e.clientX - win.offsetLeft;
-
-      offsetY =
-        e.clientY - win.offsetTop;
 
     });
 
 
-    document.addEventListener('mousemove', e => {
-
-      if (!dragging) return;
-
-      win.style.left =
-        (e.clientX - offsetX) + 'px';
-
-      win.style.top =
-        (e.clientY - offsetY) + 'px';
-
-    });
-
-
-    document.addEventListener('mouseup', () => {
-      dragging = false;
-    });
+    makeWindowDraggable(win);
 
   }
 
+
+
+  /* =========================
+     DRAG WINDOWS
+     ========================= */
 
   function makeWindowDraggable(win) {
 
@@ -374,42 +509,64 @@
 
 
     let offsetX;
+
     let offsetY;
+
     let dragging = false;
 
 
-    bar.addEventListener('mousedown', e => {
+    bar.addEventListener(
+      'mousedown',
+      e => {
 
-      dragging = true;
-
-      offsetX =
-        e.clientX - win.offsetLeft;
-
-      offsetY =
-        e.clientY - win.offsetTop;
-
-    });
+        dragging = true;
 
 
-    document.addEventListener('mousemove', e => {
-
-      if (!dragging) return;
-
-      win.style.left =
-        (e.clientX - offsetX) + 'px';
-
-      win.style.top =
-        (e.clientY - offsetY) + 'px';
-
-    });
+        offsetX =
+          e.clientX - win.offsetLeft;
 
 
-    document.addEventListener('mouseup', () => {
-      dragging = false;
-    });
+        offsetY =
+          e.clientY - win.offsetTop;
+
+      }
+    );
+
+
+    document.addEventListener(
+      'mousemove',
+      e => {
+
+        if (!dragging) return;
+
+
+        win.style.left =
+          (e.clientX - offsetX) + 'px';
+
+
+        win.style.top =
+          (e.clientY - offsetY) + 'px';
+
+      }
+    );
+
+
+    document.addEventListener(
+      'mouseup',
+      () => {
+
+        dragging = false;
+
+      }
+    );
 
   }
 
+
+
+  /* =========================
+     AUDIO
+     ========================= */
 
   let audioCtx;
 
@@ -428,13 +585,16 @@
 
 
     if (audioCtx.state === 'suspended') {
+
       audioCtx.resume();
+
     }
 
 
     return audioCtx;
 
   }
+
 
 
   function playTone(
@@ -451,11 +611,13 @@
     const oscillator =
       ctx.createOscillator();
 
+
     const gain =
       ctx.createGain();
 
 
     oscillator.type = type;
+
 
     oscillator.frequency.value =
       frequency;
@@ -488,6 +650,7 @@
   }
 
 
+
   function playTickSound() {
 
     playTone(
@@ -500,38 +663,56 @@
   }
 
 
+
   function playWinSound() {
 
     playTone(523, 0.12);
 
-    setTimeout(() => {
-      playTone(659, 0.12);
-    }, 120);
 
     setTimeout(() => {
+
+      playTone(659, 0.12);
+
+    }, 120);
+
+
+    setTimeout(() => {
+
       playTone(784, 0.25);
+
     }, 240);
 
   }
+
 
 
   function playJackpotSound() {
 
     playTone(523, 0.12);
 
+
     setTimeout(() => {
+
       playTone(659, 0.12);
+
     }, 120);
 
-    setTimeout(() => {
-      playTone(784, 0.12);
-    }, 240);
 
     setTimeout(() => {
+
+      playTone(784, 0.12);
+
+    }, 240);
+
+
+    setTimeout(() => {
+
       playTone(1047, 0.4);
+
     }, 360);
 
   }
+
 
 
   function playLoseSound() {
@@ -545,14 +726,23 @@
 
   }
 
+
+
+  /* =========================
+     SLOTS APP
+     ========================= */
+
   const SYMBOLS = [
+
     '🍒',
     '🍋',
     '🔔',
     '⭐',
     '💎',
     '7️⃣'
+
   ];
+
 
 
   function openSlots() {
@@ -570,8 +760,10 @@
     win.style.left =
       (100 + count * 20) + 'px';
 
+
     win.style.top =
       (100 + count * 20) + 'px';
+
 
     win.style.zIndex =
       ++zTop;
@@ -597,22 +789,29 @@
         <div class="reels">
 
           <div class="reel">🍒</div>
+
           <div class="reel">🍋</div>
+
           <div class="reel">🔔</div>
 
         </div>
 
 
         <div class="slots-status">
+
           Spin to win.
+
         </div>
 
 
         <button data-spin>
+
           Spin
+
         </button>
 
       </div>
+
     `;
 
 
@@ -621,9 +820,14 @@
       .appendChild(win);
 
 
-    win.addEventListener('mousedown', () => {
-      win.style.zIndex = ++zTop;
-    });
+    win.addEventListener(
+      'mousedown',
+      () => {
+
+        win.style.zIndex = ++zTop;
+
+      }
+    );
 
 
     makeWindowDraggable(win);
@@ -641,105 +845,110 @@
       win.querySelector('[data-spin]');
 
 
-    spinBtn.addEventListener('click', () => {
+    spinBtn.addEventListener(
+      'click',
+      () => {
 
-      getAudioContext();
-
-
-      spinBtn.disabled = true;
-
-
-      status.textContent =
-        'Spinning...';
+        getAudioContext();
 
 
-      let ticks = 0;
+        spinBtn.disabled = true;
 
 
-      const timer =
-        setInterval(() => {
+        status.textContent =
+          'Spinning...';
 
 
-          reels.forEach(r => {
-
-            r.textContent =
-              SYMBOLS[
-                Math.floor(
-                  Math.random() *
-                  SYMBOLS.length
-                )
-              ];
-
-          });
+        let ticks = 0;
 
 
-          playTickSound();
+        const timer =
+          setInterval(() => {
 
 
-          ticks++;
+            reels.forEach(r => {
+
+              r.textContent =
+                SYMBOLS[
+                  Math.floor(
+                    Math.random() *
+                    SYMBOLS.length
+                  )
+                ];
+
+            });
 
 
-          if (ticks >= 12) {
-
-            clearInterval(timer);
+            playTickSound();
 
 
-            const result =
-              [...reels].map(
-                r => r.textContent
-              );
+            ticks++;
 
 
-            // JACKPOT
+            if (ticks >= 12) {
 
-            if (
-              result[0] === result[1] &&
-              result[1] === result[2]
-            ) {
+              clearInterval(timer);
 
-              status.textContent =
-                'JACKPOT! 🎉';
 
-              playJackpotSound();
+              const result =
+                [...reels].map(
+                  r => r.textContent
+                );
+
+
+              /* JACKPOT */
+
+              if (
+                result[0] === result[1] &&
+                result[1] === result[2]
+              ) {
+
+                status.textContent =
+                  'JACKPOT! 🎉';
+
+
+                playJackpotSound();
+
+              }
+
+
+              /* SMALL WIN */
+
+              else if (
+                result[0] === result[1] ||
+                result[1] === result[2] ||
+                result[0] === result[2]
+              ) {
+
+                status.textContent =
+                  'Small win!';
+
+
+                playWinSound();
+
+              }
+
+
+              /* LOSS */
+
+              else {
+
+                status.textContent =
+                  'No match. Try again.';
+
+
+                playLoseSound();
+
+              }
+
+
+              spinBtn.disabled = false;
 
             }
 
+          }, 80);
 
-            // SMALL WIN
-
-            else if (
-              result[0] === result[1] ||
-              result[1] === result[2] ||
-              result[0] === result[2]
-            ) {
-
-              status.textContent =
-                'Small win!';
-
-              playWinSound();
-
-            }
-
-
-            // LOSS
-
-            else {
-
-              status.textContent =
-                'No match. Try again.';
-
-              playLoseSound();
-
-            }
-
-
-            spinBtn.disabled = false;
-
-          }
-
-        }, 80);
-
-    });
+      });
 
   }
 
