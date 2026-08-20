@@ -1,5 +1,11 @@
 # GamblOS
-My first WebOS.
-Called GamblOS because of slot machine.
+This is my first WebOS made for Stardance! 
 
-Open Welcome.html to start
+Features include : 
+
+Slot Machine
+
+Notepad
+
+Clocks
+
